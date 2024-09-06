@@ -27,7 +27,7 @@ width: 300px;
 .card_things{
     display: flex;
     gap: 10px;
-    width: 60vw;
+    width: 71vw;
     overflow: auto;
     padding: 2px 2px 2px 2px;
     scrollbar-color: black
