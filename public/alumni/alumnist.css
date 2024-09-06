@@ -41,3 +41,36 @@ width: 300px;
 .card button:hover{
 cursor: pointer;
 }
+.fake_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 10px;
+}
+.card button{
+    background-color: white;
+    border: 2px solid #FFE5B4;
+    border-radius: 20px;
+    padding: 10px 10px 10px 10px;
+}
+.card button:hover{
+    cursor: pointer;
+    border: 2px solid skyblue;
+}
+.nameoftitle{
+    border-bottom: 1px solid skyblue;
+    box-shadow: 1px 1px 1px 1px goldenrod;
+}
+.btn1{
+    width: 120px;
+    height: 25px;
+    background-color: goldenrod;
+    color: white;
+    border: 3px solid goldenrod;
+    border-radius: 20px;
+    padding-top: 5px;
+}
+.btn1:hover{
+    background-color: skyblue;
+}
