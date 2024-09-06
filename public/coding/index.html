@@ -16,131 +16,204 @@
     <link rel="stylesheet" href="../codemirror-5.65.17/theme/dracula.css">
     <script src="../codemirror-5.65.17/addon/edit/closebrackets.js"></script>
     <script src="../codemirror-5.65.17/mode/python/python.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <script src="../codemirror-5.65.17/mode/"></script> -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="coding.css">
 </head>
 
 <body>
-    <div class="row m-3">
-        <div class="col">
-            <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
-                <div class="col-12 w-25">
-                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
-                    <select class="form-select" id="inlineFormSelectPref">
-                        <option selected>Choose...</option>
-                        <option value="Java">Java</option>
-                        <option value="C++">C++</option>
-                        <option value="Python">Python</option>
-                    </select>
-                </div>
-                <div>
-                </div>
+    <div class="left">
 
+        <div class="website_name">Anubhav Setu</div>
+        <div class="extra">
 
-                <div class="submissions">
+            <div class="list">
+                <ul>
+                    <a href="/">
+                        <li><i class="fa-solid fa-house"></i>HOME</li>
+                    </a>
+                    <a href="/alumni">
+                        <li><i class="fa-solid fa-person"></i>ALUMNI</li>
+                    </a>
+                    <a href="/search">
+                        <li><i class="fa-solid fa-magnifying-glass"></i>SEARCH</li>
+                    </a>
+                    <a href="/messages">
+                        <li><i class="fa-solid fa-message"></i>MESSAGES</li>
+                    </a>
+                    <a href="/contest">
+                        <li><i class="fa-solid fa-bell"></i>CONTEST</li>
+                    </a>
+                    <a href="/create">
+                        <li><i class="fa-solid fa-square-plus"></i>CREATE</li>
+                    </a>
+                    <a href="/profile">
+                        <li><i class="fa-solid fa-user"></i>PROFILE</li>
+                    </a>
 
-                    <button type="button" id="run" class="btn btn-outline-success">Run</button>
-                    <button type="button" id="submit" class="btn btn-outline-success">Submit</button>
-                </div>
-            </div>
-            <textarea type="text" class="form-control" placeholder="" id="editor" aria-label="First name"></textarea>
-        </div>
-        <div class="col d-flex flex-column rounded bg-dark px-4">
-            <div class="h-50">
-                <label for="input" class="text-light mt-4 mb-2">Input</label>
-                <textarea type="text" class="form-control h-75" id="input" placeholder=""
-                    aria-label="Last name"></textarea>
-            </div>
-            <div class="h-50">
-                <label for="input" class="text-light mb-2">Output</label>
-                <textarea type="text" class="form-control h-75" id="output" placeholder=""
-                    aria-label="Last name"></textarea>
+                </ul>
             </div>
         </div>
     </div>
+    <div class="contest-section">
+        <div class="q">
+            <p>
+                Question: Osank and Bored Games osank has recently been playing a lot of chess
+                in preparation for the ICCT (International osank Chess Tournament).
+                Since putting in long hours is not an easy task, osank's mind wanders
+                elsewhere. He starts counting the number of squares with odd side
+                length on his chessboard.. However, osank is not satisfied. He wants
+                to know the number of squares of odd side length on a generic N ∗ N
+                N∗N chessboard.<br> Input: The first line will contain a single integer
+                T T, the number of test cases. The next T T lines will have a single
+                integer N N, the size of the chess board.<br> Output: For each test
+                case, print a integer denoting the number of squares with odd length.
+                <br> Constraints: 1 ≤ T ≤ 100 1≤T≤100 1 ≤ N ≤ 1000 1≤N≤1000<br>
+                Sample Input:<br>2<br>5<br>7<br>
+                Sample Output:<br>35<br>84
+            </p>
+        </div>
+
+
+        <div class="row m-3">
+            <div class="col code">
+                <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
+                    <div class="col-12 w-25">
+                        <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                        <select class="form-select" id="inlineFormSelectPref">
+                            <option selected>Choose...</option>
+                            <option value="Java">Java</option>
+                            <option value="C++">C++</option>
+                            <option value="Python">Python</option>
+                        </select>
+                    </div>
+                    <div></div>
+
+                    <div class="submissions">
+                        <button type="button" id="run" class="btn btn-outline-success">
+                            Run
+                        </button>
+                        <button type="button" id="submit" class="btn btn-outline-success">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+                <textarea type="text" class="form-control" placeholder="" id="editor"
+                    aria-label="First name"></textarea>
+            </div>
+            <div class="col d-flex flex-column rounded bg-dark px-4">
+                <div class="h-50">
+                    <label for="input" class="text-light mt-4 mb-2">Input</label>
+                    <textarea type="text" class="form-control h-75" id="input" placeholder=""
+                        aria-label="Last name"></textarea>
+                </div>
+                <div class="h-50">
+                    <label for="input" class="text-light mb-2">Output</label>
+                    <textarea type="text" class="form-control h-75" id="output" placeholder=""
+                        aria-label="Last name"></textarea>
+                </div>
+                <p id="effect"></p>
+            </div>
+        </div>
+    </div>
+
 </body>
 <script>
     var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-    mode: "text/x-c++src",
-    theme: "dracula",
-    lineNumbers: true,
-    autoCloseBrackets: true,
-});
+        mode: "text/x-c++src",
+        theme: "dracula",
+        lineNumbers: true,
+        autoCloseBrackets: true,
+    });
 
-var width = window.innerWidth;
-var input = document.getElementById("input");
-var output = document.getElementById("output");
-var run = document.getElementById("run");
-var submit = document.getElementById("submit"); // Make sure this ID matches
+    var width = window.innerWidth;
+    var input = document.getElementById("input");
+    var output = document.getElementById("output");
+    var run = document.getElementById("run");
+    var submit = document.getElementById("submit"); // Make sure this ID matches
 
-editor.setSize(0.7 * width, "500");
+    editor.setSize(0.7 * width, "500");
 
-var option = document.getElementById("inlineFormSelectPref");
-option.addEventListener("change", function () {
-    if (option.value === "Java") {
-        editor.setOption("mode", "text/x-java");
-    } else if (option.value === "Python") {
-        editor.setOption("mode", "text/x-python");
-    } else {
-        editor.setOption("mode", "text/x-c++src");
-    }
-});
-
-run.addEventListener("click", async () => {
-    var code = {
-        code: editor.getValue(),
-        input: input.value,
-        lang: option.value
-    };
-
-    console.log("Sending code to server:", code);  // Log the code being sent
-
-    try {
-        var oData = await fetch("/compile", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(code)
-        });
-
-        console.log("Response received:", oData);  // Log the response received
-
-        var d = await oData.json();
-        console.log("Data received:", d);  // Log the data received from the server
-
-        if (d.output) {
-            output.value = d.output;  // Assign the output to the textarea
+    var option = document.getElementById("inlineFormSelectPref");
+    option.addEventListener("change", function () {
+        if (option.value === "Java") {
+            editor.setOption("mode", "text/x-java");
+        } else if (option.value === "Python") {
+            editor.setOption("mode", "text/x-python");
         } else {
-            output.value = "No output or an error occurred";  // Handle case where output is missing
+            editor.setOption("mode", "text/x-c++src");
         }
-    } catch (error) {
-        console.error("Error during fetch:", error);  // Log any error that occurs
-        output.value = "Failed to fetch output";  // Inform the user of an error
-    }
-});
+    });
 
-submit.addEventListener("click", async (e) => {
-    e.preventDefault();
+    run.addEventListener("click", async () => {
+        var code = {
+            code: editor.getValue(),
+            input: input.value,
+            lang: option.value
+        };
 
-    const code = editor.getValue();
-    const selectedLang = option.value;
+        console.log("Sending code to server:", code);  // Log the code being sent
 
-    try {
-        const response = await fetch('/submit', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ code: code, language: selectedLang })
-        });
+        try {
+            var oData = await fetch("/compile", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(code)
+            });
 
-        const result = await response.json();
-    } catch (error) {
-        console.error("Error:", error);
-    }
-});
+            console.log("Response received:", oData);  // Log the response received
+
+            var d = await oData.json();
+            console.log("Data received:", d);  // Log the data received from the server
+
+            if (d.output) {
+                output.value = d.output;  // Assign the output to the textarea
+            } else {
+                output.value = "No output or an error occurred";  // Handle case where output is missing
+            }
+        } catch (error) {
+            console.error("Error during fetch:", error);  // Log any error that occurs
+            output.value = "Failed to fetch output";  // Inform the user of an error
+        }
+    });
+
+    submit.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        const code = editor.getValue();
+        const selectedLang = option.value;
+
+        try {
+            const response = await fetch('/submit', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: code, language: selectedLang })
+            });
+
+            const result = await response.json();
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    });
 
 
 </script>
+<script>
+    var button=document.querySelector("#submit");
+    var effect=document.querySelector("#effect");
+    
+        button.addEventListener('click',()=>{setTimeout(()=>{
+        effect.textContent="code has been submitted";
+        },10000);
+    });
+  </script>
+
 
 </html>

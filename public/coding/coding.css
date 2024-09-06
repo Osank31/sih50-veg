@@ -1,0 +1,31 @@
+.left {
+    margin-right: 0;
+  }
+  .q {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    margin-right: 20px;
+    margin-bottom: -10px;
+    color: white;
+  }
+  .contest-section {
+    background-color: #11181b;
+  }
+  .code {
+    width: 800px !important;
+  }
+  .CodeMirror{
+    width: 775px !important;
+  }
+  #effect{
+    
+    width: auto;
+    font-size: 30px;
+    color: green;
+    padding: 10px;
+  }
+.contest-section{
+    width: 1400px;
+}
