@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style[2].css">
+</head>
+
+<body>
+    <div class="left">
+        <div class="website_name">xyz_rajasthan</div>
+        <div class="extra">
+
+            <div class="list">
+                <ul>
+                    <a href="/">
+                        <li><i class="fa-solid fa-house"></i>HOME</li>
+                    </a>
+                    <a href="/alumni">
+                        <li><i class="fa-solid fa-person"></i>ALUMNI</li>
+                    </a>
+                    <a href="/search">
+                        <li><i class="fa-solid fa-magnifying-glass"></i>SEARCH</li>
+                    </a>
+                    <a href="/messages">
+                        <li><i class="fa-solid fa-message"></i>MESSAGES</li>
+                    </a>
+                    <a href="/contest">
+                        <li><i class="fa-solid fa-bell"></i>CONTEST</li>
+                    </a>
+                    <a href="/create">
+                        <li><i class="fa-solid fa-square-plus"></i>CREATE</li>
+                    </a>
+                    <a href="/profile">
+                        <li><i class="fa-solid fa-user"></i>PROFILE</li>
+                    </a>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="middle">
+        <div class="container">
+            <div class="searchbar">
+                <input type="text" id="search-input" placeholder="Search by name...">
+                <button id="search-button">Search</button>
+            </div>
+            <div class="filter-box">
+
+                <div class="heading">Companies</div>
+                <div class="company-boxes">
+                    <div class="company-box facebook">Facebook</div>
+                    <div class="company-box google">Google</div>
+                    <div class="company-box amazon">Amazon</div>
+                    <div class="company-box microsoft">Microsoft</div>
+                    <div class="company-box apple">Apple</div>
+                    <div class="company-box twitter">Twitter</div>
+                    <div class="company-box linkedin">LinkedIn</div>
+                    <div class="company-box netflix">Netflix</div>
+                    <div class="company-box paypal">PayPal</div>
+                    <div class="company-box adobe">Adobe</div>
+                </div>
+                <div class="heading">Types of Jobs</div>
+                <div class="fields">
+                    <div class="field">Software</div>
+                    <div class="field">Mechanical</div>
+                    <div class="field">Chemical</div>
+                    <div class="field">Electrical</div>
+                    <div class="field">Civil</div>
+                    <div class="field">Aerospace</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- <script>
+    document.getElementById('search-button').addEventListener('click', () => {
+    const searchTerm = document.getElementById('search-input').value;
+    fetch(`/find?term=${searchTerm}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }).then(response => response.json())
+      .then(data => {
+          console.log('Search results:', data);
+          // Populate the search results on the page
+      })
+      .catch(error => console.error('Search error:', error));
+});
+</script> -->
+
+<!-- chatbot script -->
+<script>
+    window.embeddedChatbotConfig = {
+        chatbotId: "8JCNHT5syIZjfLUtUMwP1",
+        domain: "www.chatbase.co"
+    }
+</script>
+<script src="https://www.chatbase.co/embed.min.js" chatbotId="8JCNHT5syIZjfLUtUMwP1" domain="www.chatbase.co" defer>
+</script>
+
+</html>

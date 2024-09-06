@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>profile</title>
+    <link rel="stylesheet" href="../profilepage/profile.css">
+     <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="left" style="margin: 0px 45px 0px 0px;">
+        <div class="website_name">xyz_rajasthan</div>
+        <div class="extra">
+
+            <div class="list">
+                <ul>
+                    <a href="/">
+                        <li><i class="fa-solid fa-house"></i>HOME</li>
+                    </a>
+                    <a href="/alumni">
+                        <li><i class="fa-solid fa-person"></i>ALUMNI</li>
+                    </a>
+                    <a href="/search">
+                        <li><i class="fa-solid fa-magnifying-glass"></i>SEARCH</li>
+                    </a>
+                    <a href="/messages">
+                        <li><i class="fa-solid fa-message"></i>MESSAGES</li>
+                    </a>
+                    <a href="/contest">
+                        <li><i class="fa-solid fa-bell"></i>CONTEST</li>
+                    </a>
+                    <a href="/create">
+                        <li><i class="fa-solid fa-square-plus"></i>CREATE</li>
+                    </a>
+                    <a href="/profile">
+                        <li><i class="fa-solid fa-user"></i>PROFILE</li>
+                    </a>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="profilepage">
+            <div class="information">
+                <div class="abtme infoji">
+                    <div class="heading">
+                        <div class="icon">
+                            <img src="../images/profilepage/abtme.svg" alt="">
+                        </div>
+                        <div class="actext">About me</div>
+                    </div>
+                    <div class="textmaterial">
+                        Hey! I am osank verma currently pursuing B.tech in Electronics and communication engineering in Indian Institute of Information Technology, Bhagalpur. I am currently learning Full stack Web development along with Data structure and Algorithm and competetive programming.
+                    </div>
+                </div>
+                <div class="exper infoji">
+                    <div class="heading">
+                        <div class="icon">
+                            <img src="../images/profilepage/exper.svg" alt="experience">
+                        </div>
+                        <div class="actext">Experience</div>
+                    </div>
+                    <div class="textmaterial">
+                        <li>Developed Smart India Hackathon web page for Ministry of Electronics Govt. of India.</li>
+                        <li>Created Problems for Codeforces round 992(Div. 2)</li>
+                        <li>Got Internship at Google as Backend Engineer</li>
+                    </div>
+                </div>
+                <div class="achievements infoji">
+                    <div class="heading">
+                        <div class="icon">
+                            <img src="../images/profilepage/achivements.svg" alt="">
+                        </div>
+                        <div class="actext">Achievements</div>
+                    </div>
+                    <div class="textmaterial">
+                        <li>Grand Master in Codeforces with Max rating 2587</li>
+                        <li>5 Star in Codechef</li>
+                        <li>Guardian in Leetcode</li>
+                        <li>Got Global rank 2 in Codechef Starter 143 in division 3</li>
+                        <li>Among top 0.4% Coder in Leetcode</li>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="userphoto">
+                <div class="imageuser">
+                    <div class="userphotoimg"><img src="../images/osank.jpg" alt=""></div>
+                    <div class="username">Osank Verma</div>
+                </div>
+                <div class="containerx">
+                    <div class="circular-progress">
+                        <span class="progress-value">0</span>
+                    </div>
+                    <span class="text">Your Monthly Score</span>
+                </div>
+                <div class="chotacontainer">
+                    <div class="connections">
+                        <div class="connectimg"><img src="../images/profilepage/connections.svg" alt=""></div>
+                        <div class="connecttext">Connections</div>
+                    </div>
+                    <div class="settings">
+                        <div class="heading1">
+                            <button>
+                                <div class="actext">Settings</div>
+                                <div class="icon icon1">
+                                    <img src="../images/profilepage/settings.svg" alt="">
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let circularProgress=document.querySelector(".circular-progress");
+        let progressValue=document.querySelector(".progress-value");
+        let progressStartValue=0,progressEndValue=90,speed=15;
+
+        let progress=setInterval(()=>{
+            progressStartValue++;
+            progressValue.textContent=`${progressStartValue}`;
+            circularProgress.style.background=`conic-gradient(#7d2ae8 ${progressStartValue*3.6}deg,#ededed 0deg)`;
+            if(progressStartValue==progressEndValue){
+                clearInterval(progress)
+            }
+            console.log(progressStartValue)
+        },speed)
+    </script>
+
+    <script>
+    </script>
+
+    <script>
+        window.embeddedChatbotConfig = {
+            chatbotId: "8JCNHT5syIZjfLUtUMwP1",
+            domain: "www.chatbase.co"
+        }
+    </script>
+
+
+    <script src="https://www.chatbase.co/embed.min.js" chatbotId="8JCNHT5syIZjfLUtUMwP1" domain="www.chatbase.co"
+        defer></script>
+</body>
+
+</html>

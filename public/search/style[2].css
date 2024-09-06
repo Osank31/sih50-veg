@@ -1,0 +1,129 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Container Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the top */
+    height: 100vh;
+    font-family: 'SUSE', sans-serif;
+}
+
+/* Search Bar Styles */
+.searchbar {
+    display: flex;
+    align-items: center;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 800px; /* Optional: Maximum width for larger screens */
+    margin-top: 20px; /* Space from the top of the viewport */
+    margin-bottom: 40px; /* Increased space below the search bar */
+}
+
+#search-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+/* Heading Styles */
+.heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 80%; /* Adjust the width as needed */
+    max-width: 800px; /* Optional: Maximum width for larger screens */
+}
+
+/* Specific Colors for Each Heading */
+.heading.companies {
+    color: #007bff; /* Blue color */
+}
+
+.heading.jobs {
+    color: #28a745; /* Green color */
+}
+
+/* Company Boxes Styles */
+.company-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Adjusted size for smaller boxes */
+    gap: 15px; /* Space between boxes */
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 40px; /* Space below the company boxes */
+}
+
+/* Individual Company Box Styles */
+.company-box {
+    height: 60px; /* Slightly smaller height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px; /* Adjust font size */
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    background-color: #007bff; /* Blue color matching the search bar */
+}
+
+/* Fields Styles */
+.fields {
+    display: flex;
+    flex-wrap: wrap; /* Allow fields to wrap onto new lines if needed */
+    gap: 20px;
+    margin-bottom: 40px; /* Space below the fields */
+    width: 80%;
+    max-width: 800px; /* Match the width of the container */
+}
+
+.field {
+    padding: 15px 25px; /* Increased padding for better appearance */
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    text-align: center; /* Center text */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.field:hover {
+    background-color: #e2e2e2; /* Slightly darker on hover */
+}
+
+.filter-box
+{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 25px;
+}

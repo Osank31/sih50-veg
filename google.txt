@@ -1,0 +1,91 @@
+/*
+ * Install the Generative AI SDK
+ *
+ * $ npm install @google/generative-ai
+ */
+
+const {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} = require("@google/generative-ai");
+
+const apiKey = "AIzaSyCIlucHZEDEhl60a3R6qp46FfnR7bG6I1E";
+const genAI = new GoogleGenerativeAI(apiKey);
+
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+  systemInstruction: "{\n\nquestion: \"\",\nsource_code: \"\",\ninput given: \"\",\n  output: 'Hello World!',\nexpected_output: \"\",\n\n  memory: '3072',\n  cpuTime: '0.00',\n  error: null\n}\nyou will be given a json file in this format. you have to see the question and the source_code and see wether the source_code matches to what is asked in the question. compare the output with the expected output. on this basis you have to give a score to the code out of 100.\n\n\nonly give the score(score/10)\njudging criteria:-\nsource_code according to question\ntime take by cpu\nmemory usage\ncode redability and explanation",
+});
+
+const generationConfig = {
+  temperature: 0.15,
+  topP: 0.95,
+  topK: 64,
+  maxOutputTokens: 8192,
+  responseMimeType: "text/plain",
+};
+
+async function run() {
+  const chatSession = model.startChat({
+    generationConfig,
+ // safetySettings: Adjust safety settings
+ // See https://ai.google.dev/gemini-api/docs/safety-settings
+    history: [
+      {
+        role: "user",
+        parts: [
+          {text: "Problem Statement: Given an integer array arr, find the contiguous subarray (containing at least one number) which\nhas the largest sum and returns its sum and prints the subarray.\n#include<bits/stdc++.h>\nusing namespace std;\nint main(){cout<<\"hello\";\nreturn 0;}"},
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {text: "cpp\n#include<bits/stdc++.h>\nusing namespace std;\n\nint main(){\n  int n;\n  cin>>n;\n  int arr[n];\n  for(int i=0;i<n;i++){\n    cin>>arr[i];\n  }\n  int max_so_far = INT_MIN, max_ending_here = 0, start_index = 0, end_index = 0, s = 0;\n  for (int i = 0; i < n; i++) {\n    max_ending_here += arr[i];\n    if (max_so_far < max_ending_here) {\n      max_so_far = max_ending_here;\n      start_index = s;\n      end_index = i;\n    }\n    if (max_ending_here < 0) {\n      max_ending_here = 0;\n      s = i + 1;\n    }\n  }\n  cout<<\"Maximum contiguous sum is \"<<max_so_far<<endl;\n  cout<<\"The subarray is \";\n  for(int i=start_index;i<=end_index;i++){\n    cout<<arr[i]<<\" \";\n  }\n  return 0;\n}\n\n\n*Explanation:\n\n The code uses Kadane's Algorithm to find the maximum contiguous sum.\n* max_so_far stores the maximum sum found so far.\n* max_ending_here stores the maximum sum ending at the current index.\n* start_index and end_index keep track of the starting and ending indices of the subarray with the maximum sum.\n* s keeps track of the starting index of the current subarray.\n\n*Code Breakdown:\n\n1. **Input:*\n   - Reads the size of the array (n) and the elements of the array.\n\n2. *Initialization:*\n   - max_so_far is initialized to INT_MIN to handle cases with all negative numbers.\n   - max_ending_here is initialized to 0.\n   - start_index and end_index are initialized to 0.\n   - s is initialized to 0.\n\n3. *Kadane's Algorithm:*\n   - The code iterates through the array.\n   - For each element, it updates max_ending_here by adding the current element.\n   - If max_ending_here is greater than max_so_far, it updates max_so_far and the indices start_index and end_index.\n   - If max_ending_here becomes negative, it resets it to 0 and updates s to the next index.\n\n4. *Output:*\n   - The code prints the maximum contiguous sum (max_so_far) and the subarray with the maximum sum.\n\n*Example Input:*\n\n\n5\n-2 1 -3 4 -1 2 1 -5 4\n\n\n*Example Output:*\n\n\nMaximum contiguous sum is 6\nThe subarray is 1 -3 4 -1 2 1 \n\n\n*Memory and CPU Time:\n\n The code has a time complexity of O(n), as it iterates through the array once.\n* The space complexity is O(1), as it only uses a few variables to store the necessary information.\n\n*Score:\n\n Based on its efficiency and correctness, the code would likely receive a score of *95/100. \n The 5 points deduction could be for minor improvements like optimizing the loop for a slightly faster execution time. \n"},
+        ],
+      },
+      {
+        role: "user",
+        parts: [
+          {text: "Problem Statement: Given an integer array arr, find the contiguous subarray (containing at least one number) which\nhas the largest sum and returns its sum and prints the subarray.\n#include<bits/stdc++.h>\nusing namespace std;\nint main(){cout<<\"hello\";\nreturn 0;}"},
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {text: "cpp\n#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n  int n;\n  cin >> n;\n  int arr[n];\n  for (int i = 0; i < n; i++) {\n    cin >> arr[i];\n  }\n\n  int max_so_far = INT_MIN, max_ending_here = 0, start_index = 0, end_index = 0, s = 0;\n\n  for (int i = 0; i < n; i++) {\n    max_ending_here += arr[i];\n\n    if (max_so_far < max_ending_here) {\n      max_so_far = max_ending_here;\n      start_index = s;\n      end_index = i;\n    }\n\n    if (max_ending_here < 0) {\n      max_ending_here = 0;\n      s = i + 1;\n    }\n  }\n\n  cout << \"Maximum contiguous sum is \" << max_so_far << endl;\n  cout << \"The subarray is: \";\n  for (int i = start_index; i <= end_index; i++) {\n    cout << arr[i] << \" \";\n  }\n  cout << endl;\n\n  return 0;\n}\n\n\n*Explanation:\n\nThis code implements Kadane's Algorithm to find the maximum contiguous subarray sum. Here's a breakdown:\n\n1. **Input:*\n   - Reads the size of the array (n) and the elements of the array.\n\n2. *Initialization:*\n   - max_so_far: Stores the maximum sum found so far (initialized to the smallest possible integer).\n   - max_ending_here: Stores the maximum sum ending at the current index.\n   - start_index, end_index: Keep track of the starting and ending indices of the subarray with the maximum sum.\n   - s: Keeps track of the starting index of the current subarray.\n\n3. *Kadane's Algorithm:*\n   - The code iterates through the array (arr).\n   - **max_ending_here += arr[i]:** Adds the current element to the sum of the current subarray.\n   - **if (max_so_far < max_ending_here):** If the current subarray's sum is greater than the maximum sum found so far, update max_so_far and the start_index and end_index to reflect this new maximum.\n   - **if (max_ending_here < 0):** If the current subarray's sum becomes negative, reset it to 0 and update s to the next index, effectively starting a new subarray.\n\n4. *Output:*\n   - Prints the max_so_far (maximum sum) and the subarray corresponding to that sum using the start_index and end_index.\n\n*Example Input:*\n\n\n5\n-2 1 -3 4 -1 2 1 -5 4 \n\n\n*Example Output:*\n\n\nMaximum contiguous sum is 6\nThe subarray is: 1 -3 4 -1 2 1 \n\n\n*Memory and CPU Time:\n\n *Time Complexity:* O(n), as the code iterates through the array only once.\n* *Space Complexity:* O(1), as it only uses a constant number of variables.\n\n*Score:\n\n *95/100:* The code is efficient and correct. It implements Kadane's Algorithm accurately. A small deduction might be given for minor potential optimizations (like using a slightly more efficient loop), but overall, it's a well-written solution. \n"},
+          {text: "0\n"},
+        ],
+      },
+      {
+        role: "user",
+        parts: [
+          {text: "{\n\nquestion: \" Given an integer array arr, find the contiguous subarray (containing at least one number) which\nhas the largest sum and returns its sum and prints the subarray.\",\nsource_code: \"// Your First C++ Program\n\n#include <iostream>\n\nint main() {\n    std::cout << \"Hello World!\";\n    return 0;\n}\",\ninput given: \"1 2 7 -4 3 2 -10 9 1\",\n  output: 'Hello World!',\nexpected_output: \"11\",\n\n  memory: '5072',\n  cpuTime: '1.00',\n  error: null\n}\n"},
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {text: "0/100 \n"},
+        ],
+      },
+      {
+        role: "user",
+        parts: [
+          {text: "{\n\nquestion: \" Given an integer array arr, find the contiguous subarray (containing at least one number) which\nhas the largest sum and returns its sum and prints the subarray.\",\nsource_code: \"#include <iostream>\n#include <vector>\n#include <limits.h> // For LLONG_MIN\n\nusing namespace std;\n\nlong long maxSubarraySum(vector<int> arr, int n)\n{\n    long long sum = 0;\n    long long maxi = LLONG_MIN; // Initialize to LLONG_MIN to handle all negative arrays\n    for (int i = 0; i < n; i++)\n    {\n        sum += arr[i];\n        if (sum > maxi)\n            maxi = sum;\n        if (sum < 0)\n            sum = 0;\n    }\n    return maxi;\n}\n\nint main()\n{\n    int n;\n    cout << \"Enter the number of elements in the array: \";\n    cin >> n;\n\n    vector<int> arr(n);\n    \n    cout << \"Enter the elements of the array: \";\n    for (int i = 0; i < n; i++)\n    {\n        cin >> arr[i];\n    }\n\n    long long result = maxSubarraySum(arr, n);\n\n    cout << \"Maximum subarray sum is \" << result << endl;\n\n    return 0;\n}”\ninput given: \"1 2 7 -4 3 2 -10 9 1\",\n  output: 'Hello World!',\nexpected_output: \"11\",\n\n  memory: '5072',\n  cpuTime: '1.00',\n  error: null\n}\n"},
+        ],
+      },
+      {
+        role: "model",
+        parts: [
+          {text: "60/100 \n"},
+        ],
+      },
+    ],
+  });
+
+  const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
+  console.log(result.response.text());
+}
+
+run();

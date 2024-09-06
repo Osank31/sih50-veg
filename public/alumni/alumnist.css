@@ -1,0 +1,43 @@
+*{
+    font-family: "SUSE", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+.left{
+    margin-right: 80px;
+}
+.images img{
+height: 180px;
+width: 300px;
+}
+.container{
+    margin-top: 5px;
+    /* border: 5px solid red; */
+}
+.services{
+    background-color: white;
+    padding: 4px 4px 4px 4px;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    /* margin: auto; */
+}
+.card_things{
+    display: flex;
+    gap: 10px;
+    width: 60vw;
+    overflow: auto;
+    padding: 2px 2px 2px 2px;
+    scrollbar-color: black
+    ;
+    
+}
+.service_name{
+    font-size: 25px;
+    font-weight: 700;
+}
+.card button:hover{
+cursor: pointer;
+}

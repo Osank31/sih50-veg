@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../codemirror-5.65.17/lib/codemirror.css">
+    <script src="../codemirror-5.65.17/lib/codemirror.js"></script>
+    <script src="../codemirror-5.65.17/mode/clike/clike.js"></script>
+    <link rel="stylesheet" href="../codemirror-5.65.17/theme/dracula.css">
+    <script src="../codemirror-5.65.17/addon/edit/closebrackets.js"></script>
+    <script src="../codemirror-5.65.17/mode/python/python.js"></script>
+    <!-- <script src="../codemirror-5.65.17/mode/"></script> -->
+</head>
+
+<body>
+    <div class="row m-3">
+        <div class="col">
+            <div class="d-flex justify-content-between mb-2 bg-dark rounded p-2">
+                <div class="col-12 w-25">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>Choose...</option>
+                        <option value="Java">Java</option>
+                        <option value="C++">C++</option>
+                        <option value="Python">Python</option>
+                    </select>
+                </div>
+                <div>
+                </div>
+
+
+                <div class="submissions">
+
+                    <button type="button" id="run" class="btn btn-outline-success">Run</button>
+                    <button type="button" id="submit" class="btn btn-outline-success">Submit</button>
+                </div>
+            </div>
+            <textarea type="text" class="form-control" placeholder="" id="editor" aria-label="First name"></textarea>
+        </div>
+        <div class="col d-flex flex-column rounded bg-dark px-4">
+            <div class="h-50">
+                <label for="input" class="text-light mt-4 mb-2">Input</label>
+                <textarea type="text" class="form-control h-75" id="input" placeholder=""
+                    aria-label="Last name"></textarea>
+            </div>
+            <div class="h-50">
+                <label for="input" class="text-light mb-2">Output</label>
+                <textarea type="text" class="form-control h-75" id="output" placeholder=""
+                    aria-label="Last name"></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+    mode: "text/x-c++src",
+    theme: "dracula",
+    lineNumbers: true,
+    autoCloseBrackets: true,
+});
+
+var width = window.innerWidth;
+var input = document.getElementById("input");
+var output = document.getElementById("output");
+var run = document.getElementById("run");
+var submit = document.getElementById("submit"); // Make sure this ID matches
+
+editor.setSize(0.7 * width, "500");
+
+var option = document.getElementById("inlineFormSelectPref");
+option.addEventListener("change", function () {
+    if (option.value === "Java") {
+        editor.setOption("mode", "text/x-java");
+    } else if (option.value === "Python") {
+        editor.setOption("mode", "text/x-python");
+    } else {
+        editor.setOption("mode", "text/x-c++src");
+    }
+});
+
+run.addEventListener("click", async () => {
+    var code = {
+        code: editor.getValue(),
+        input: input.value,
+        lang: option.value
+    };
+
+    console.log("Sending code to server:", code);  // Log the code being sent
+
+    try {
+        var oData = await fetch("/compile", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(code)
+        });
+
+        console.log("Response received:", oData);  // Log the response received
+
+        var d = await oData.json();
+        console.log("Data received:", d);  // Log the data received from the server
+
+        if (d.output) {
+            output.value = d.output;  // Assign the output to the textarea
+        } else {
+            output.value = "No output or an error occurred";  // Handle case where output is missing
+        }
+    } catch (error) {
+        console.error("Error during fetch:", error);  // Log any error that occurs
+        output.value = "Failed to fetch output";  // Inform the user of an error
+    }
+});
+
+submit.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const code = editor.getValue();
+    const selectedLang = option.value;
+
+    try {
+        const response = await fetch('/submit', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ code: code, language: selectedLang })
+        });
+
+        const result = await response.json();
+    } catch (error) {
+        console.error("Error:", error);
+    }
+});
+
+
+</script>
+
+</html>

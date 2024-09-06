@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylemiddle.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .apple
+        {
+            display: flex;
+        }
+        .readmoresection {
+            cursor: pointer;
+            color: gray;
+            /* text-decoration: underline; */
+        }
+
+        .readlesssection {
+            cursor: pointer;
+            color: gray;
+            /* text-decoration: underline; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="left">
+        <div class="website_name">xyz_rajasthan</div>
+        <div class="extra">
+
+            <div class="list">
+                <ul>
+                    <a href="/">
+                        <li><i class="fa-solid fa-house"></i>HOME</li>
+                    </a>
+                    <a href="/alumni">
+                        <li><i class="fa-solid fa-person"></i>ALUMNI</li>
+                    </a>
+                    <a href="/search">
+                        <li><i class="fa-solid fa-magnifying-glass"></i>SEARCH</li>
+                    </a>
+                    <a href="/messages">
+                        <li><i class="fa-solid fa-message"></i>MESSAGES</li>
+                    </a>
+                    <a href="/contest">
+                        <li><i class="fa-solid fa-bell"></i>CONTEST</li>
+                    </a>
+                    <a href="/create">
+                        <li><i class="fa-solid fa-square-plus"></i>CREATE</li>
+                    </a>
+                    <a href="/profile">
+                        <li><i class="fa-solid fa-user"></i>PROFILE</li>
+                    </a>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="middle">
+        <%const reversedPosts=posts.slice().reverse(); %>
+            <% if (reversedPosts.length> 0) { %>
+                <% reversedPosts.forEach(post=> { %>
+                    <div class="post">
+                        <div class="box1">
+                            <div class="profilePic">
+                                <img src="/<%= post.profilePicture %>" alt="">
+                            </div>
+                            <div class="profile-name">
+                                <%= post.username %>
+                            </div>
+                        </div>
+                        <div class="apple">
+
+                            <div class="written-content">
+                                <%= post.writtenContent %> <!--<span class="readmoresection"></span> <span class="readlesssection"></span>-->
+                            </div>
+                            <div class="readmoresection"></div>
+                        </div>
+                        <div class="readlesssection"></div>
+                        <div class="imageUpload">
+                            <img src="<%= post.imageUploaded %>" alt="">
+                        </div>
+                        <div class="essentials">
+                            <div class="like"><i class="fa-regular fa-thumbs-up"></i>
+                                <div class="likecount" data-likecount="<%= post.likeCount %>"></div>
+                            </div>
+                            <div class="comments"><i class="fa-solid fa-comment-dots"></i>
+                                <div class="commentcount" data-commentcount="<%= post.commentCount %>"></div>
+                            </div>
+                            <div class="share"><i class="fa-solid fa-share"></i></div>
+                        </div>
+                    </div>
+                    <% }) %>
+                        <% } %>
+    </div>
+
+    <script>
+        function convertToAmericanStyle(number) {
+            if (isNaN(number)) return "0"; // Handle NaN cases
+            if (number < 1000) {
+                return number.toString();
+            } else if (number < 1_000_000) {
+                const value = number / 1000;
+                return value % 1 === 0 ? `${value}k` : `${value.toFixed(1)}k`;
+            } else if (number < 1_000_000_000) {
+                const value = number / 1_000_000;
+                return value % 1 === 0 ? `${value}M` : `${value.toFixed(1)}M`;
+            } else if (number < 1_000_000_000_000) {
+                const value = number / 1_000_000_000;
+                return value % 1 === 0 ? `${value}B` : `${value.toFixed(1)}B`;
+            } else {
+                const value = number / 1_000_000_000_000;
+                return value % 1 === 0 ? `${value}T` : `${value.toFixed(1)}T`;
+            }
+        }
+
+        document.querySelectorAll('.likecount').forEach(el => {
+            const likeCount = parseInt(el.getAttribute('data-likecount'), 10);
+            el.textContent = convertToAmericanStyle(likeCount);
+        });
+
+        document.querySelectorAll('.commentcount').forEach(el => {
+            const commentCount = parseInt(el.getAttribute('data-commentcount'), 10);
+            el.textContent = convertToAmericanStyle(commentCount);
+        });
+    </script>
+
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Select all elements with the class "written-content"
+            const writtenContents = document.querySelectorAll(".written-content");
+
+            writtenContents.forEach((writtenContent) => {
+                const contentLength = writtenContent.textContent;
+                let content1;
+                let content2;
+
+                // Check if the content needs truncation
+                if (contentLength.length > 100) {
+                    content1 = contentLength.slice(0, 100);
+                    content2 = contentLength.slice(100);
+
+                    // Initially display only the truncated content
+                    writtenContent.textContent = content1;
+
+                    // Find the closest .post element to the current writtenContent
+                    const post = writtenContent.closest('.post');
+                    // Select the corresponding "Read More" and "Read Less" elements within the same post
+                    const readMoreSection = post.querySelector(".readmoresection");
+                    const readLessSection = post.querySelector(".readlesssection");
+
+                    // Create "Read More" and "Read Less" HTML
+                    readMoreSection.innerHTML = "<span>Read more</span>";
+                    readLessSection.innerHTML = "<span>Read less</span>";
+
+                    // Initially hide the "Read Less" section
+                    readLessSection.style.display = 'none';
+
+                    // Add click event to "Read More"
+                    readMoreSection.addEventListener("click", function () {
+                        writtenContent.textContent = content1 + content2;
+                        readMoreSection.style.display = 'none';
+                        readLessSection.style.display = 'block';
+                    });
+
+                    // Add click event to "Read Less"
+                    readLessSection.addEventListener("click", function () {
+                        writtenContent.textContent = content1;
+                        readMoreSection.style.display = 'block';
+                        readLessSection.style.display = 'none';
+                    });
+                } else {
+                    // If content does not need truncation, hide both sections
+                    const post = writtenContent.closest('.post');
+                    const readMoreSection = post.querySelector(".readmoresection");
+                    const readLessSection = post.querySelector(".readlesssection");
+                    readMoreSection.style.display = 'none';
+                    readLessSection.style.display = 'none';
+                }
+            });
+        });
+
+    </script>
+
+<!--Chatbot script-->
+    <script>
+        window.embeddedChatbotConfig = {
+            chatbotId: "8JCNHT5syIZjfLUtUMwP1",
+            domain: "www.chatbase.co"
+        }
+    </script>
+
+
+    <script src="https://www.chatbase.co/embed.min.js" chatbotId="8JCNHT5syIZjfLUtUMwP1" domain="www.chatbase.co"
+        defer></script>
+</body>
+
+</html>

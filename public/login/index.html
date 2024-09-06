@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">xyz_college</h1>
+        <div>
+            <h1>Login to account</h1>
+            <p>Access to the most powerful tool in the entire design and web industry</p>
+            <div class="formsection">
+                <form id="loginForm">
+                    <input class="form-control" type="text" name="username" placeholder="E-mail Address" id="emailaddress">
+                    <input class="form-control" type="password" name="password" placeholder="Password" id="password">
+                    <div class="form-button">
+                        <button type="submit">LOGIN</button>
+                        <a href="#" id="forgot">Forgot password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="loginwithother">
+            <p>or login with</p>
+            <div class="otherlinks">
+                <!-- Add social login buttons here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const formData = {
+                username: document.getElementById('emailaddress').value,
+                password: document.getElementById('password').value
+            };
+
+            fetch('/submit-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === 'Form submitted successfully!') {
+                    window.location.href = '/';
+                } else {
+                    alert(data.message); // Show error message to user
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
