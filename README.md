@@ -49,6 +49,7 @@ I worked on this project when I was still extremely naive about backend developm
 
 - [SAURABHM6341](https://github.com/SAURABHM6341)
 - [princesharma89](https://github.com/princesharma89)
+- [Rudrakshdixitt](https://github.com/Rudrakshdixitt)
 
 Their contributions and help were valuable in getting the project off the ground.
 
