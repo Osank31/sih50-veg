@@ -15,7 +15,6 @@ const {
     HarmBlockThreshold,
 } = require("@google/generative-ai");
 
-const apiKey = "AIzaSyCIlucHZEDEhl60a3R6qp46FfnR7bG6I1E";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
@@ -112,7 +111,6 @@ function handleFormSubmission() {
             const { username, password } = req.body;
 
             // Hunter.io API Key
-            const apiKey = 'bbb54cfd3bdc750215f1688c1ecfd845ad005074';
 
             // Verify email using Hunter.io
             const emailVerificationUrl = `https://api.hunter.io/v2/email-verifier?email=${username}&api_key=${apiKey}`;
